@@ -1,3 +1,4 @@
+import { app, db, storage } from "../config/firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,6 +44,7 @@ const ContextUser = ({ children }) => {
   useEffect(() => {
     if (!user) autoAuth();
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
