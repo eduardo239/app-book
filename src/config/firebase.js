@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+// eslint-disable-next-line no-unused-vars
 import { get, getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 

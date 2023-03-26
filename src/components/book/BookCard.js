@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import posterDefault from "../../assets/images/book-poster.jpg";
+import ImageDisplay from "../form/ImageDisplay";
 
 const BookCard = ({ book }) => {
   const navigate = useNavigate();
@@ -9,11 +10,11 @@ const BookCard = ({ book }) => {
       onClick={() => navigate(`/books/${book.id}`)}
       className="hover:cursor-pointer p-2 bg-white shadow-md overflow-hidden"
     >
-      <img
-        src={book.posterURL ? book.posterURL : posterDefault}
+      <ImageDisplay
+        image={book.posterURL ? book.posterURL : posterDefault}
         alt={book.titulo}
-        className="h-64 w-full object-cover"
       />
+
       <div className="px-1 py-4">
         <h2 className="text-lg font-bold text-gray-800">{book.titulo}</h2>
         <p className="text-sm text-gray-700 mb-8 font-normal">{book.autor}</p>

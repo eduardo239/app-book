@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { app, db, storage } from "../config/firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
