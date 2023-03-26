@@ -20,11 +20,12 @@ const colleciontBooks = collection(db, "books");
  * @param {imagem} file
  * @param {livro} book
  */
-export const addNewBook = async (e, file, book) => {
+export const addNewBook = async (e, file, book, setLoading) => {
   e.preventDefault();
-
+  setLoading(true);
   if (file) await handleSendFile(file, book);
   else saveNewBook("", book);
+  setLoading(false);
 };
 
 export const saveNewBook = async (posterURL = "", book) => {

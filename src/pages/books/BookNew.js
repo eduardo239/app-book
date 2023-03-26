@@ -9,9 +9,7 @@ const BookNew = () => {
   const [file, setFile] = useState(null);
   const [book, setBook] = useState(null);
   const [image, setImage] = useState(null);
-
-  console.log(book);
-  console.log(file);
+  const [loading, setLoading] = useState(false);
 
   const handleImageOnChange = (e) => {
     if (e.target.files[0]) {
@@ -46,8 +44,9 @@ const BookNew = () => {
         />
         <InputButton
           full
+          disabled={loading}
           label="Salvar"
-          onClick={(e) => addNewBook(e, file, book)}
+          onClick={(e) => addNewBook(e, file, book, setLoading)}
         />
       </form>
     </div>

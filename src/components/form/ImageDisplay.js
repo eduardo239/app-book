@@ -1,9 +1,13 @@
 import React from "react";
 
-const ImageDisplay = ({ image }) => {
+const ImageDisplay = ({ image, alt = "App Book" }) => {
   return (
     <div className="flex justify-center">
-      <img className="poster-lg" src={image} alt="Imagem para ser enviada" />
+      <img
+        className="h-64 w-full object-cover poster-lg"
+        src={image}
+        alt={alt}
+      />
     </div>
   );
 };

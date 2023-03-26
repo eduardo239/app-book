@@ -3,20 +3,17 @@ import { useParams } from "react-router-dom";
 import posterDefault from "../../assets/images/book-poster.jpg";
 import { getBookById } from "../../helper/api_book";
 
-const bookTest = {
-  id: 5,
+const bookLoading = {
+  id: 1,
   posterURL: "",
-  titulo: "O Pequeno Príncipe",
-  autor: "Antoine de Saint-Exupéry",
-  descricao:
-    "Um piloto encontra um príncipe do espaço durante uma queda de avião no deserto.",
-  editora: "Reynal & Hitchcock",
-  ano_publicacao: 1943,
-  genero: "Fábula",
+  titulo: "Título do Livro",
+  autor: "Autor do Livro",
+  descricao: "Descrição do livro.",
+  ano_publicacao: "0000",
 };
 const BookById = () => {
   const { id } = useParams();
-  const [book, setBook] = useState(bookTest);
+  const [book, setBook] = useState(bookLoading);
   console.log(book);
   useEffect(() => {
     (async function loadBooks() {
@@ -38,7 +35,9 @@ const BookById = () => {
             />
           </div>
           <div className="flex-1">
-            <code className="text-sm block w-full p-2 mb-2"># {book.id}</code>
+            <code className="text-sm block w-full p-2 text-gray-500 text-right">
+              # {book.id}
+            </code>
             <h1 className="text-3xl font-bold text-gray-900">{book.titulo}</h1>
             <p className="text-lg font-medium text-gray-900 mt-4">
               <strong>Author:</strong> {book.autor}
