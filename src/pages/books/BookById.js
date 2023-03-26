@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import posterDefault from "../../assets/images/book-poster.jpg";
+import { getBookById } from "../../helper/api_book";
 
 const bookTest = {
   id: 5,
@@ -16,18 +17,22 @@ const bookTest = {
 const BookById = () => {
   const { id } = useParams();
   const [book, setBook] = useState(bookTest);
-
+  console.log(book);
   useEffect(() => {
+    (async function loadBooks() {
+      const bookById = await getBookById(id);
+      setBook(bookById);
+    })();
     return () => {};
-  }, []);
+  }, [id]);
 
   if (book)
     return (
-      <div className="bg-gray-100 py-6 px-4 sm:px-6 lg:px-8 min-h-screen">
+      <div className="bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row gap-10">
-          <div className="w-64">
+          <div className="w-64 ">
             <img
-              className="poster-max"
+              className="poster-lg"
               src={book.posterURL !== "" ? book.posterURL : posterDefault}
               alt={book.titulo}
             />
@@ -38,9 +43,7 @@ const BookById = () => {
             <p className="text-lg font-medium text-gray-900 mt-4">
               <strong>Author:</strong> {book.autor}
             </p>
-            <p className="text-lg font-medium text-gray-900">
-              <strong>Genre:</strong> {book.genero}
-            </p>
+
             <p className="text-lg font-medium text-gray-900">
               <strong>Description:</strong> {book.descricao}
             </p>
