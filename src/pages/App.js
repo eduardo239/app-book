@@ -1,20 +1,36 @@
 /* eslint-disable no-unused-vars */
-import InputButton from "../components/form/InputButton";
-import InputCheckbox from "../components/form/InputCheckbox";
-import InuptField from "../components/form/InuptField";
-import TextTitle from "../components/form/TextTitle";
+import { Route, Routes } from "react-router-dom";
+//
+import MainMenu from "../components/menu/MainMenu";
+import SignIn from "./auth/SignIn";
+import BookById from "./books/BookById";
+import BookList from "./books/BookList";
+import UserAccount from "./user/UserAccount";
+import NotFound from "./NotFound";
+import SignUp from "./auth/SignUp";
+import TestComponents from "./TestComponents";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-400">
-      <div className="bg-gray-300 container mx-auto">
-        {/* 
-        <InuptField />
-        <InputCheckbox />
-        <TextTitle />
-        <InputButton full />
-        <InputButton color="blue" />
-      */}
+    <div className="min-h-screen bg-gray-900">
+      <div className="min-h-screen bg-gray-300 container mx-auto">
+        <MainMenu />
+
+        <div className="p-5">
+          <Routes>
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+
+            <Route exact path="/books" element={<BookList />} />
+
+            <Route path="/books/:id" element={<BookById />} />
+            <Route path="/user/:id" element={<UserAccount />} />
+
+            <Route path="*" element={<NotFound />} />
+
+            <Route path="/components" element={<TestComponents />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );
