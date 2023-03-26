@@ -4,12 +4,14 @@ import InputButton from "../../components/form/InputButton";
 import InuptField from "../../components/form/InuptField";
 import TextTitle from "../../components/form/TextTitle";
 import { addNewBook } from "../../helper/api_book";
+import { IoSaveOutline } from "react-icons/io5";
 
 const BookNew = () => {
   const [file, setFile] = useState(null);
   const [book, setBook] = useState(null);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleImageOnChange = (e) => {
     if (e.target.files[0]) {
@@ -45,10 +47,11 @@ const BookNew = () => {
         <InputButton
           full
           disabled={loading}
-          label="Salvar"
-          onClick={(e) => addNewBook(e, file, book, setLoading)}
+          label={<IoSaveOutline />}
+          onClick={(e) => addNewBook(e, file, book, setLoading, setError)}
         />
       </form>
+      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -20,10 +20,15 @@ const colleciontBooks = collection(db, "books");
  * @param {imagem} file
  * @param {livro} book
  */
-export const addNewBook = async (e, file, book, setLoading) => {
+export const addNewBook = async (e, file, book, setLoading, setError) => {
   e.preventDefault();
+  if (!book) return;
+  if (!book.titulo) return setError("O título é obrigatório.");
+  if (!book.autor) return setError("O autor é obrigatório.");
+  if (!book.descricao) return setError("A descrição é obrigatória.");
+
   setLoading(true);
-  if (file) await handleSendFile(file, book);
+  if (file) await handleUploadFile(file, book);
   else saveNewBook("", book);
   setLoading(false);
 };
@@ -43,7 +48,7 @@ export const saveNewBook = async (posterURL = "", book) => {
   }
 };
 
-export const handleSendFile = async (file, book) => {
+export const handleUploadFile = async (file, book) => {
   const metadata = {
     contentType: "image/jpeg",
   };

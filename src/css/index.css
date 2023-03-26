@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* - - - - - - - - - - - - - - - - - - - - - - - -  */
 .masonry-grid {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -19,8 +20,13 @@
   background: white;
   margin-bottom: 30px;
 }
-
+/* - - - - - - - - - - - - - - - - - - - - - - - -  */
 .poster-lg {
   width: 256px;
   display: block;
 }
+svg {
+  width: 20px;
+  height: 20px;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - -  */

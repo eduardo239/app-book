@@ -31,7 +31,7 @@ const BookList = () => {
       columnClassName="masonry-grid_column"
     >
       {books.map((book) => {
-        return <BookCard book={book} />;
+        return <BookCard key={book.id} book={book} />;
       })}
     </Masonry>
   );
