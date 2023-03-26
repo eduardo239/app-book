@@ -36,13 +36,19 @@ const MainMenu = () => {
             Livros
           </NavLink>
           <NavLink
-            to="/user/1"
+            to="/book-new"
             className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
           >
-            Conta
+            Adicionar
           </NavLink>
         </div>
         <div>
+          <NavLink
+            to="/user/1"
+            className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+          >
+            Usuário
+          </NavLink>
           <NavLink
             to="/sign-in"
             className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"

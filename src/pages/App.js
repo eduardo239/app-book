@@ -9,6 +9,7 @@ import UserAccount from "./user/UserAccount";
 import NotFound from "./NotFound";
 import SignUp from "./auth/SignUp";
 import TestComponents from "./TestComponents";
+import BookNew from "./books/BookNew";
 
 function App() {
   return (
@@ -22,13 +23,14 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
 
             <Route exact path="/books" element={<BookList />} />
-
             <Route path="/books/:id" element={<BookById />} />
+            <Route path="/book-new" element={<BookNew />} />
+
             <Route path="/user/:id" element={<UserAccount />} />
 
-            <Route path="*" element={<NotFound />} />
-
             <Route path="/components" element={<TestComponents />} />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>
