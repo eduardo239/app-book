@@ -101,6 +101,7 @@ export const handleGoogleSignIn = async (e, setUser) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
+      console.log(token);
       // The signed-in user info.
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
@@ -116,10 +117,14 @@ export const handleGoogleSignIn = async (e, setUser) => {
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
+      console.log(errorCode);
       const errorMessage = error.message;
+      console.log(errorMessage);
       // The email of the user's account used.
+      // eslint-disable-next-line no-unused-vars
       const email = error.customData.email;
       // The AuthCredential type that was used.
+      // eslint-disable-next-line no-unused-vars
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
@@ -132,7 +137,7 @@ export const handleGithubSignIn = async (e, setUser) => {
       // This gives you a GitHub Access Token. You can use it to access the GitHub API.
       const credential = GithubAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-
+      console.log(token);
       // The signed-in user info.
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
@@ -148,10 +153,14 @@ export const handleGithubSignIn = async (e, setUser) => {
     .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
+      console.log(errorCode);
       const errorMessage = error.message;
+      console.log(errorMessage);
       // The email of the user's account used.
+      // eslint-disable-next-line no-unused-vars
       const email = error.customData.email;
       // The AuthCredential type that was used.
+      // eslint-disable-next-line no-unused-vars
       const credential = GithubAuthProvider.credentialFromError(error);
       // ...
     });

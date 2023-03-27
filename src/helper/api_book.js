@@ -8,6 +8,7 @@ import {
   query,
   getDoc,
   doc,
+  deleteDoc,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../config/firebase";
@@ -121,6 +122,19 @@ export const getBookById = async (id) => {
   const docRef = doc(db, "books", id);
   const docSnap = await getDoc(docRef);
 
+  try {
+    if (docSnap.exists) {
+      return { ...docSnap.data(), id: docSnap.id };
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const deleteBookById = async (id) => {
+  const docRef = doc(db, "books", id);
+  const docSnap = await deleteDoc(docRef);
+  console.log(docSnap);
   try {
     if (docSnap.exists) {
       return { ...docSnap.data(), id: docSnap.id };

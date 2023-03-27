@@ -8,7 +8,7 @@ const BookCard = ({ book }) => {
   return (
     <div
       onClick={() => navigate(`/books/${book.id}`)}
-      className="hover:cursor-pointer hover:bg-blue-200 p-2 bg-white shadow-md overflow-hidden"
+      className="hover:cursor-pointer hover:bg-gray-50 p-2 bg-white shadow-md overflow-hidden"
     >
       <ImageDisplay
         image={book.posterURL ? book.posterURL : posterDefault}

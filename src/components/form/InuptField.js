@@ -1,5 +1,3 @@
-import React from "react";
-
 const InuptField = ({ type = "text", label = "Label", onChange }) => {
   return (
     <div className="mb-5 bg-gray-100 rounded">

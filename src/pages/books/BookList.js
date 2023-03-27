@@ -4,16 +4,16 @@ import BookCard from "../../components/book/BookCard";
 import { getAllbooks } from "../../helper/api_book";
 
 const breakpointCols = {
-  default: 5,
-  1100: 3,
+  default: 6,
+  1300: 5,
+  1100: 4,
+  900: 3,
   700: 2,
   500: 1,
 };
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
-
-  console.log(books);
 
   useEffect(() => {
     (async function loadBooks() {

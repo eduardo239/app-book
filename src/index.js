@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./pages/App";
+// eslint-disable-next-line no-unused-vars
+import { app } from "./config/firebase";
 
-import { BrowserRouter } from "react-router-dom";
 import { ContextUser } from "./hooks/UserContext";
+import { BrowserRouter } from "react-router-dom";
+
+import App from "./pages/App";
 
 import "./css/index.css";
 

@@ -14,10 +14,10 @@ import BookNew from "./books/BookNew";
 function App() {
   return (
     <div className="min-h-screen bg-gray-900">
-      <div className="min-h-screen bg-gray-300 container mx-auto">
+      <div className="min-h-screen bg-gray-600 container mx-auto">
         <MainMenu />
 
-        <div className="p-5">
+        <div className="p-2">
           <Routes>
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />

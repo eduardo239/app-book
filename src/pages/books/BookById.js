@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import posterDefault from "../../assets/images/book-poster.jpg";
-import { getBookById } from "../../helper/api_book";
+import { deleteBookById, getBookById } from "../../helper/api_book";
 
 const bookLoading = {
   id: 1,
@@ -12,9 +12,15 @@ const bookLoading = {
   ano_publicacao: "0000",
 };
 const BookById = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [book, setBook] = useState(bookLoading);
-  console.log(book);
+
+  const handleDeleteBook = async () => {
+    await deleteBookById(book.id);
+    navigate("/books");
+  };
+
   useEffect(() => {
     (async function loadBooks() {
       const bookById = await getBookById(id);
@@ -36,7 +42,7 @@ const BookById = () => {
           </div>
           <div className="flex-1">
             <code className="text-sm block w-full p-2 text-gray-500 text-right">
-              # {book.id}
+              # {book.id} <button onClick={handleDeleteBook}>Remover</button>
             </code>
             <h1 className="text-3xl font-bold text-gray-900">{book.titulo}</h1>
             <p className="text-lg font-medium text-gray-900 mt-4">
