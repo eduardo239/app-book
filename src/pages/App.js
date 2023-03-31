@@ -17,7 +17,7 @@ function App() {
       <div className="min-h-screen bg-gray-600 container mx-auto">
         <MainMenu />
 
-        <div className="p-2">
+        <div className="mt-2">
           <Routes>
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />

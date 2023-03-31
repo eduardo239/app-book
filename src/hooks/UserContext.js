@@ -10,8 +10,6 @@ const ContextUser = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isUserActive, setIsUserActive] = useState(false);
 
-  console.log(user);
-
   const autoAuth = async () => {
     onAuthStateChanged(auth, (data) => {
       if (data) {
@@ -30,13 +28,14 @@ const ContextUser = ({ children }) => {
   const userSignOut = async () => {
     signOut(auth)
       .then(() => {
-        navigate("/sign-out");
+        navigate("/books");
       })
       .catch((error) => {
         console.log(error.message);
       })
       .finally(() => {
         setIsUserActive(false);
+        setUser(null);
       });
   };
 

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../../hooks/UserContext";
 
 const MainMenu = () => {
+  const { user, userSignOut } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -49,32 +51,50 @@ const MainMenu = () => {
             >
               Livros
             </NavLink>
-            <NavLink
-              to="/book-new"
-              className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
-            >
-              Adicionar
-            </NavLink>
+            {user && (
+              <NavLink
+                to="/book-new"
+                className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+              >
+                Adicionar
+              </NavLink>
+            )}
           </div>
+
           <div>
-            <NavLink
-              to="/user/1"
-              className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
-            >
-              Usuário
-            </NavLink>
-            <NavLink
-              to="/sign-in"
-              className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
-            >
-              Entrar
-            </NavLink>
-            <NavLink
-              to="/sign-up"
-              className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
-            >
-              Registrar
-            </NavLink>
+            {user && (
+              <>
+                <NavLink
+                  to={`/user/${user.uid}`}
+                  className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+                >
+                  {user.email ? user.email : "Usuário"}
+                </NavLink>
+                <NavLink
+                  onClick={userSignOut}
+                  to="#"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+                >
+                  Sair
+                </NavLink>
+              </>
+            )}
+            {!user && (
+              <>
+                <NavLink
+                  to="/sign-in"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+                >
+                  Entrar
+                </NavLink>
+                <NavLink
+                  to="/sign-up"
+                  className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
+                >
+                  Registrar
+                </NavLink>
+              </>
+            )}
             <NavLink
               to="/components"
               className="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
