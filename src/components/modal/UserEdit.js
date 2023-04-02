@@ -8,10 +8,12 @@ import { updateUser } from "../../helper/api_user";
 
 const UserEdit = () => {
   const { setUser } = useContext(UserContext);
+  // eslint-disable-next-line no-unused-vars
   const [file, setFile] = useState(null);
   const [data, setData] = useState({});
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
 
   const handleUpdate = async (e) => {
