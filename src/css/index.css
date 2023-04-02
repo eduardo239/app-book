@@ -25,6 +25,10 @@
   width: 256px;
   display: block;
 }
+.poster-md {
+  width: 128px;
+  display: block;
+}
 svg {
   width: 20px;
   height: 20px;

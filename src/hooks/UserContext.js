@@ -51,6 +51,7 @@ const ContextUser = ({ children }) => {
         auth,
         setUser,
         user,
+
         userSignOut,
         isUserActive,
       }}

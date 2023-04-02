@@ -6,6 +6,7 @@ import { handleSignUpWithEmail } from "../../helper/api_user";
 import { useContext, useState } from "react";
 import { UserContext } from "../../hooks/UserContext";
 import { Navigate } from "react-router-dom";
+import LinkTo from "../../components/ui/LinkTo";
 
 const SignUp = () => {
   const { user, setUser } = useContext(UserContext);
@@ -50,6 +51,9 @@ const SignUp = () => {
           />
 
           <InputButton full disabled={loading} label="Registrar" />
+
+          <LinkTo label="Já tem uma conta? Entre aqui!" to="/sign-in" />
+
           {error && <p>{error}</p>}
         </form>
       </div>

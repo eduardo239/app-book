@@ -6,11 +6,56 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateEmail,
+  updateProfile,
 } from "firebase/auth";
 
-const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
+
+export const updateUser = async (e, payload) => {
+  e.preventDefault();
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (user) {
+    // const uid = user.uid;
+    // const displayName = user.displayName;
+    // const email = user.email;
+    // const photoURL = user.photoURL;
+    // const emailVerified = user.emailVerified;
+
+    await updateProfile(auth.currentUser, {
+      displayName: payload.displayName,
+      photoURL: payload.photoURL,
+    });
+    const updatedUser = auth.currentUser;
+
+    return {
+      displayName: updatedUser.displayName,
+      email: updatedUser.email,
+      photoURL: updatedUser.photoURL,
+      providerId: updatedUser.providerId,
+      uid: updatedUser.uid,
+    };
+  } else {
+    console.log("Usuário não logado");
+    return null;
+  }
+};
+
+export const updateUserEmail = async (e, payload) => {
+  e.preventDefault();
+  const auth = getAuth();
+  updateEmail(auth.currentUser, payload.email)
+    .then(() => {
+      console.log("Email atualizado");
+    })
+    .catch((error) => {
+      console.log("Usuário não logado");
+    });
+};
 
 export const handleSignInWithEmail = async (
   e,
@@ -24,6 +69,7 @@ export const handleSignInWithEmail = async (
   if (!payload) return;
   if (!payload.email) return setError("O e-mail é obrigatório.");
   if (!payload.password) return setError("A senha é obrigatória.");
+  const auth = getAuth();
 
   try {
     setLoading(true);
@@ -60,6 +106,7 @@ export const handleSignUpWithEmail = async (
   if (!payload.email) return setError("O e-mail é obrigatório.");
   if (!payload.username) return setError("O nome de usuário é obrigatório.");
   if (!payload.password) return setError("A senha é obrigatória.");
+  const auth = getAuth();
 
   setError(null);
   try {
@@ -84,6 +131,7 @@ export const handleSignUpWithEmail = async (
 };
 
 export const handleSignOut = async () => {
+  const auth = getAuth();
   signOut(auth)
     .then(() => {
       console.log("Sign-out successful.");
@@ -95,13 +143,15 @@ export const handleSignOut = async () => {
 
 export const handleGoogleSignIn = async (e, setUser) => {
   e.preventDefault();
+  const auth = getAuth();
 
   await signInWithPopup(auth, googleProvider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
+      // eslint-disable-next-line no-unused-vars
       const token = credential.accessToken;
-      console.log(token);
+
       // The signed-in user info.
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
@@ -116,10 +166,11 @@ export const handleGoogleSignIn = async (e, setUser) => {
     })
     .catch((error) => {
       // Handle Errors here.
+      // eslint-disable-next-line no-unused-vars
       const errorCode = error.code;
-      console.log(errorCode);
+      // eslint-disable-next-line no-unused-vars
       const errorMessage = error.message;
-      console.log(errorMessage);
+
       // The email of the user's account used.
       // eslint-disable-next-line no-unused-vars
       const email = error.customData.email;
@@ -132,6 +183,7 @@ export const handleGoogleSignIn = async (e, setUser) => {
 
 export const handleGithubSignIn = async (e, setUser) => {
   e.preventDefault();
+  const auth = getAuth();
   await signInWithPopup(auth, githubProvider)
     .then((result) => {
       // This gives you a GitHub Access Token. You can use it to access the GitHub API.

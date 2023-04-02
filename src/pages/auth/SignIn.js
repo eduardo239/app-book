@@ -10,6 +10,7 @@ import {
 import { useContext, useState } from "react";
 import { UserContext } from "../../hooks/UserContext";
 import { Navigate } from "react-router-dom";
+import LinkTo from "../../components/ui/LinkTo";
 
 const SignIn = () => {
   const { user, setUser } = useContext(UserContext);
@@ -44,6 +45,11 @@ const SignIn = () => {
             />
 
             <InputButton full disabled={loading} label="Entrar" />
+
+            <LinkTo
+              label="Ainda não tem uma conta? Registre-se aqui"
+              to="/sign-up"
+            />
 
             {error && <p>{error}</p>}
           </form>

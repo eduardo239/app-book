@@ -9,9 +9,47 @@ import UserAccount from "./user/UserAccount";
 import NotFound from "./NotFound";
 import SignUp from "./auth/SignUp";
 import TestComponents from "./TestComponents";
-import BookNew from "./books/BookNew";
+import BookNew from "../components/modal/BookNew";
+import { useContext, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { UserContext } from "../hooks/UserContext";
 
 function App() {
+  const { user, setUser } = useContext(UserContext);
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        setUser({
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          providerId: user.providerId,
+          uid: user.uid,
+        });
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [auth, setUser]);
+
+  useEffect(() => {
+    if (user) {
+      console.log(`O usuário ${user.displayName} foi atualizado`);
+    } else {
+      console.log("Nenhum usuário está autenticado atualmente");
+    }
+  }, [user]);
+
   return (
     <div className="min-h-screen bg-gray-900">
       <div className="min-h-screen bg-gray-600 container mx-auto">

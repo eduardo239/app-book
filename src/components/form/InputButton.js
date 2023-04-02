@@ -1,5 +1,5 @@
 const InputButton = ({
-  color = "blue",
+  color = "gray",
   full = false,
   label = "Label",
   disabled = false,

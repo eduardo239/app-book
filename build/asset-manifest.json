@@ -1,10 +1,14 @@
 {
   "files": {
-    "main.js": "/static/js/main.12752a2b.js",
+    "main.css": "/static/css/main.a38ccb78.css",
+    "main.js": "/static/js/main.cb0b7ef6.js",
+    "static/media/book-poster.jpg": "/static/media/book-poster.9914ba0b24033752eeae.jpg",
     "index.html": "/index.html",
-    "main.12752a2b.js.map": "/static/js/main.12752a2b.js.map"
+    "main.a38ccb78.css.map": "/static/css/main.a38ccb78.css.map",
+    "main.cb0b7ef6.js.map": "/static/js/main.cb0b7ef6.js.map"
   },
   "entrypoints": [
-    "static/js/main.12752a2b.js"
+    "static/css/main.a38ccb78.css",
+    "static/js/main.cb0b7ef6.js"
   ]
 }
